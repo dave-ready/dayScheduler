@@ -27,17 +27,33 @@ displayCurrentDate()
 
 //Can i create a for loop to run through the hours and append a new row for each?
 
-<div class="row">
-  <div class="col-md-2">.col-md-2</div>  
-  <div class="col-md-9">.col-md-9</div>
-  <div class="col-md-1">.col-md-1</div>
-</div>
+//<div class="row">
+//  <div class="col-md-2">.col-md-2</div>  
+//  <div class="col-md-9">.col-md-9</div>
+//  <div class="col-md-1">.col-md-1</div>
+//</div>
 
-//var amHours = ["1:00am", "2:00am", "3:00am", "4:00am", "5:00am", "6:00am", "7:00am", "8:00am", "9:00am", "10:00am", "11:00am", "12:00am"];
-//var pmHours = ["1:00pm", "2:00pm", "3:00pm", "4:00pm", "5:00pm", "6:00pm", "7:00pm", "8:00pm", "9:00pm", "10:00pm", "11:00pm", "12:00pm"];
 //var timeBlock =  ;
 
 //Demo shows work hrs 9am-5pm.  all must be in same array - military time?? MUST CHANGE ARRAY
+//
+
+var workHours = [900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700]
+
+
+//this function isnt working - Console logging 1300, not 1PM. need new strategy!!! UGH!!
+
+function timeConvert() {
+     if (workHours < 1200) {
+         workHours === workHours + "AM"
+     } else {
+         workHours === workHours - 1200 + "PM"
+     }
+}
+
+timeConvert()
+for (var i = 0; i < workHours.length; i++);
+console.log(workHours[4]);
 
 //WHEN I view the time blocks for that day
 //THEN each time block is color-coded to indicate whether it is in the past, present, or future
@@ -59,7 +75,7 @@ displayCurrentDate()
 
 //create saveBtn with font awesome
 
-var saveBtn = <i class="fas fa-save"></i>
+//var saveBtn = $("<i class="fas fa-save"></i>")
 
 //function saveEvent()
 
