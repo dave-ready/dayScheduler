@@ -1,7 +1,10 @@
 //GIVEN I am using a daily planner to create a schedule
 //WHEN I open the planner
 //THEN the current day is displayed at the top of the calendar
-$(document).ready(function() { 
+
+// .ready causing problems
+//$(document).ready(function() { 
+
 //create function to display the current date (moment.js??)
 
 function displayCurrentDate() {
@@ -20,6 +23,7 @@ displayCurrentDate()
 //WHEN I scroll down
 //THEN I am presented with time blocks for standard business hours
 
+
 //Create time blocks - style.css looks like it already has the styled elements -
 //do I create div/column/row/etc. element classes/id's for them to style??
 
@@ -28,26 +32,52 @@ displayCurrentDate()
 //Can i create a for loop to run through the hours and append a new row for each?
 
 //<div class="row">
-//  <div class="col-md-2">.col-md-2</div>  
-//  <div class="col-md-9">.col-md-9</div>
-//  <div class="col-md-1">.col-md-1</div>
+//  <div class="col-md-2 hour">.col-md-2</div>  
+//  <div class="col-md-9 event">.col-md-9</div>
+//  <div class="col-md-1 save">.col-md-1</div>
 //</div>
 
 //var timeBlock =  ;
 
+
+
+
+
 //Demo shows work hrs 9am-5pm.  all must be in same array - military time?? MUST CHANGE ARRAY
 //
 
-var workHours = [ {time: 9,  amPM: "AM"},
-                  {time: 10, amPM: "AM"}, 
-                  {time: 11, amPM: "AM"}, 
-                  {time: 12, amPM: "PM"}, 
-                  {time: 1, amPM: "PM"}, 
-                  {time: 2, amPM: "PM"},
-                  {time: 3, amPM: "PM"}, 
-                  {time: 4, amPM: "PM"}, 
-                  {time: 5, amPM: "PM"}]
+var workHours = [ {hour: "09", time:"9",  amPM: "AM"},
+                  {hour: "10", time: "10", amPM: "AM"}, 
+                  {hour: "11", time: "11", amPM: "AM"}, 
+                  {hour: "12", time: "12", amPM: "PM"}, 
+                  {hour: "13", time: "1", amPM: "PM"}, 
+                  {hour: "14", time: "2", amPM: "PM"},
+                  {hour: "15", time: "3", amPM: "PM"}, 
+                  {hour: "16", time: "4", amPM: "PM"}, 
+                  {hour: "17", time: "5", amPM: "PM"}]
 
+//moved time blocks down here below array. creating grid Here:
+
+//appending grid rows using for each loop
+
+ 
+workHours.forEach(function(thisHour) {
+
+    
+    var timeBlock = $("<form>").attr({
+        "class": "row"
+    });
+    $(".container").append(timeBlock);
+
+    // create text field for time block
+
+    var hourField = $("<div>")
+        .text(thisHour.time + thisHour.amPM)
+        .attr({
+            "class": "col-md-2 hour"
+    });
+
+    
 
 //this function isnt working - Console logging 1300, not 1PM. need new strategy!!! UGH!!
 
@@ -90,6 +120,4 @@ var workHours = [ {time: 9,  amPM: "AM"},
 //WHEN I refresh the page
 //THEN the saved events persist'
 
-//how do I make sure it stays??
-
-});
+//how do I make sure it stays??//
