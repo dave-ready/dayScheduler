@@ -38,22 +38,30 @@ displayCurrentDate()
 //Demo shows work hrs 9am-5pm.  all must be in same array - military time?? MUST CHANGE ARRAY
 //
 
-var workHours = [900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700]
+var workHours = [ {time: 9,  amPM: "AM"},
+                  {time: 10, amPM: "AM"}, 
+                  {time: 11, amPM: "AM"}, 
+                  {time: 12, amPM: "PM"}, 
+                  {time: 1, amPM: "PM"}, 
+                  {time: 2, amPM: "PM"},
+                  {time: 3, amPM: "PM"}, 
+                  {time: 4, amPM: "PM"}, 
+                  {time: 5, amPM: "PM"}]
 
 
 //this function isnt working - Console logging 1300, not 1PM. need new strategy!!! UGH!!
 
-function timeConvert() {
-     if (workHours < 1200) {
-         workHours === workHours + "AM"
-     } else {
-         workHours === workHours - 1200 + "PM"
-     }
-}
+//function timeConvert() {
+//     if (workHours < 1200) {
+//   workHours === workHours + "AM"
+//     } else {
+//         workHours === workHours - 1200 + "PM"
+//    }
+//}
 
-timeConvert()
-for (var i = 0; i < workHours.length; i++);
-console.log(workHours[4]);
+//timeConvert()
+//for (var i = 0; i < workHours.length; i++);
+//console.log(workHours[4]);
 
 //WHEN I view the time blocks for that day
 //THEN each time block is color-coded to indicate whether it is in the past, present, or future
