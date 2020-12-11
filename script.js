@@ -111,7 +111,25 @@ function saveEvent() {
 //WHEN I refresh the page
 //THEN the saved events persist
 
-function postEvent() {}   //keeps event in grid after it is saved of page refreshed
+//created postEvent() function to keep the data on the page
+
+//WORK ON THIS...
+function postEvent() {
+    workHours.forEach(function (_thisHour) {
+        $("#_thisHour.id").val(_thisHour.reminder);
+    })
+}  
+
+//Must store data somewhere??
+//temp value of 0;
+var dataStorage = 0;
+
+
+
+
+
+
+//keeps event in grid after it is saved of page refreshed
 
 //create a function to keep it on the page
 
