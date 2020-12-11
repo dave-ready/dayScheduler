@@ -9,7 +9,7 @@
 //create function to display the current date using moment.js
 
 function displayCurrentDate() {
-var currentDate = moment().format("dddd, MMMM Do YYYY");
+var currentDate = moment().format("dddd, MMMM Do YYYY, h:mm:ss a");
 $("#currentDay").text(currentDate);
 console.log(currentDate);
 
@@ -26,15 +26,15 @@ displayCurrentDate()
 //Demo shows work hrs 9am-5pm.  all must be in same array - military time?? MUST CHANGE ARRAY
 //
 
-var workHours = [ {index:"0", hour: "09", time:"9",   amPM: "AM"},
-                  {index:"1",hour: "10", time: "10", amPM: "AM"}, 
-                  {index:"2",hour: "11", time: "11", amPM: "AM"}, 
-                  {index: "3",hour: "12", time: "12", amPM: "PM"}, 
-                  {index: "4",hour: "13", time: "1",  amPM: "PM"}, 
-                  {index: "5",hour: "14", time: "2",  amPM: "PM"},
-                  {index: "6",hour: "15", time: "3",  amPM: "PM"}, 
-                  {index: "7",hour: "16", time: "4",  amPM: "PM"}, 
-                  {index: "8",hour: "17", time: "5",  amPM: "PM"}]
+var workHours = [ {calRow: "1", hour: "09",  time:"9",  amPM: "AM"},
+                  {calRow: "2", hour: "10", time: "10", amPM: "AM"}, 
+                  {calRow: "3", hour: "11", time: "11", amPM: "AM"}, 
+                  {calRow: "4", hour: "12", time: "12", amPM: "PM"}, 
+                  {calRow: "5", hour: "13", time: "1",  amPM: "PM"}, 
+                  {calRow: "6", hour: "14", time: "2",  amPM: "PM"},
+                  {calRow: "7", hour: "15", time: "3",  amPM: "PM"}, 
+                  {calRow: "8", hour: "16", time: "4",  amPM: "PM"}, 
+                  {calRow: "9", hour: "17", time: "5",  amPM: "PM"}]
 
 //moved time blocks down here below array. creating grid Here:
 
@@ -46,20 +46,26 @@ $(".container").append(timeBlock);
 // create text field for time block
 var timeField = $("<div>")
 .text(hour.time + hour.amPM)
-.attr({"class": "col-md-2 hour"});
+.attr({"class": "col-md-2"});
 
 // create event block
 // add if/else to mark past,present,future
-var eventBlock = $("<div>").attr({"class": "col-md-9"});
+var eventBlock = $("<div>").attr({"class": "col-md-9 description p-0"});
 var eventData = $("<textarea>");
 eventBlock.append(eventData);
-eventData.attr("id", hour.index);
+eventData.attr("id", hour.amPM);
+
+console.log(eventData); 
 
 //WHEN I view the time blocks for that day
 //THEN each time block is color-coded to indicate whether it is in the past, present, or future
 
 //WHEN I click into a time block
 //THEN I can enter an event
+
+//current time variable from moment.js
+
+//DUBUG!!! 9am is always coming up as "future"
 
 // if/else statement
 if (hour.time < moment().format("h")) {
@@ -71,7 +77,7 @@ else if (hour.time === moment().format("h")) {
 
 } 
 
-else {
+else if (hour.time > moment().format("h")) {
     eventData.attr({"class": "future"})
 
 }
@@ -79,7 +85,7 @@ else {
 //create save button with font awesome
 
 var saveBtn =   $("<i class='fas fa-save'></i>") 
-var saveEvent = $("<button>").attr({"class": "col-md-1 save"});
+var saveEvent = $("<button>").attr({"class": "col-md-1 saveBtn"});
 
 saveEvent.append(saveBtn);
 timeBlock.append(timeField, eventBlock, saveEvent);
