@@ -1,3 +1,4 @@
+
 //GIVEN I am using a daily planner to create a schedule
 //WHEN I open the planner
 //THEN the current day is displayed at the top of the calendar
@@ -5,7 +6,7 @@
 // .ready causing problems
 //$(document).ready(function() { 
 
-//create function to display the current date (moment.js??)
+//create function to display the current date using moment.js
 
 function displayCurrentDate() {
 var currentDate = moment().format("dddd, MMMM Do YYYY");
@@ -14,30 +15,12 @@ console.log(currentDate);
 
 }
 
+//runs the function
 displayCurrentDate()
 
 
 //WHEN I scroll down
 //THEN I am presented with time blocks for standard business hours
-
-
-//Create time blocks - style.css looks like it already has the styled elements -
-//do I create div/column/row/etc. element classes/id's for them to style??
-
-//found Bootstrap grid. hours: col-md-2; timeBlock: col-md-9; saveBtn: col-md-1
-
-//Can i create a for loop to run through the hours and append a new row for each?
-
-//<div class="row">
-//  <div class="col-md-2 hour">.col-md-2</div>  
-//  <div class="col-md-9 event">.col-md-9</div>
-//  <div class="col-md-1 save">.col-md-1</div>
-//</div>
-
-//var timeBlock =  ;
-
-
-
 
 
 //Demo shows work hrs 9am-5pm.  all must be in same array - military time?? MUST CHANGE ARRAY
@@ -55,32 +38,29 @@ var workHours = [ {hour: "09", time:"9",   amPM: "AM"},
 
 //moved time blocks down here below array. creating grid Here:
 
-//appending grid rows using 'for each' loop
-
- 
+//appending grid rows using 'for each' loop to append each row
 workHours.forEach(function(hour) {
-
-    
 var timeBlock = $("<form>").attr({"class": "row"});
-
 $(".container").append(timeBlock);
 
-
 // create text field for time block
-
 var timeField = $("<div>")
-
 .text(hour.time + hour.amPM)
 .attr({"class": "col-md-2 hour"});
 
 // create event block
 // add if/else to mark past,present,future
-    
 var eventBlock = $("<div>").attr({"class": "col-md-9"});
 var eventData = $("<textarea>");
 eventBlock.append(eventData);
 
+//WHEN I view the time blocks for that day
+//THEN each time block is color-coded to indicate whether it is in the past, present, or future
 
+//WHEN I click into a time block
+//THEN I can enter an event
+
+// if/else statement
 if (hour.time < moment().format("h")) {
     eventData.attr({"class": "past"})
 
@@ -92,55 +72,31 @@ if (hour.time < moment().format("h")) {
 
 }
 
-  //create save button with font awesome
+//create save button with font awesome
 
-  var saveBtn =   $("<i class='fas fa-save'></i>") 
-  var saveEvent = $("<button>").attr({"class": "col-md-1 save"});
+var saveBtn =   $("<i class='fas fa-save'></i>") 
+var saveEvent = $("<button>").attr({"class": "col-md-1 save"});
 
-  saveEvent.append(saveBtn);
-  timeBlock.append(timeField, eventBlock, saveEvent);
+saveEvent.append(saveBtn);
+timeBlock.append(timeField, eventBlock, saveEvent);
 
-  })
+})
 
-
-   
-
-//this function isnt working - Console logging 1300, not 1PM. need new strategy!!! UGH!!
-
-//function timeConvert() {
-//     if (workHours < 1200) {
-//   workHours === workHours + "AM"
-//     } else {
-//         workHours === workHours - 1200 + "PM"
-//    }
-//}
-
-//timeConvert()
-//for (var i = 0; i < workHours.length; i++);
-//console.log(workHours[4]);
-
-//WHEN I view the time blocks for that day
-//THEN each time block is color-coded to indicate whether it is in the past, present, or future
-
-//if (timeBlock < currentDate) {"past"}
-//else if (timeBlock === currentDate) {"present"}
-//else {"future"}
-
-//WHEN I click into a time block
-//THEN I can enter an event
-
-//function createEvent()
+//UGH!!! research these!!
  
 //WHEN I click the save button for that time block
 //THEN the text for that event is saved in local storage
 
-//create saveBtn with font awesome
-
-
-
-//function saveEvent()
+function saveEvent() { }   //to save to local storage - stringify
 
 //WHEN I refresh the page
-//THEN the saved events persist'
+//THEN the saved events persist
 
-//how do I make sure it stays??//
+function postEvent() {}   //keeps event in grid after it is saved of page refreshed
+
+//create a function to keep it on the page
+
+// this?  $(".saveBtn").on("click", function() {  });
+
+// event.preventDefault()  keep from submitting as a form
+
