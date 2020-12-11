@@ -26,7 +26,7 @@ displayCurrentDate()
 //Demo shows work hrs 9am-5pm.  all must be in same array - military time?? MUST CHANGE ARRAY
 //
 var currentHour = moment().format("ddd, HH");
-var workHours = [ {calRow: "1", hour: "09", time:"9",  amPM: "AM", event:" "},
+var workHours = [ {calRow: "1", hour: "09", time:"9",   amPM: "AM", event:" "},
                   {calRow: "2", hour: "10", time: "10", amPM: "AM", event:" "}, 
                   {calRow: "3", hour: "11", time: "11", amPM: "AM", event:" "}, 
                   {calRow: "4", hour: "12", time: "12", amPM: "PM", event:" "}, 
@@ -37,7 +37,9 @@ var workHours = [ {calRow: "1", hour: "09", time:"9",  amPM: "AM", event:" "},
                   {calRow: "9", hour: "17", time: "5",  amPM: "PM", event:" "}]
 
 for (var i = 0; workHours.length < i; i++) {
-    console.log(workHours[i]);
+    console.log(workHours[3]);
+    console.log(workHours[4]);
+    console.log(workHours[5]);
 }
  console.log(currentHour);  
                
@@ -74,7 +76,7 @@ console.log(eventData);
 //DUBUG!!! 9am is always coming up as "future"
 
 // if/else statement
-if (hour.time < moment().format("h")) {
+if (hour.time <= moment().format("h")) {
     eventData.attr({"class": "past"})
 
 } 
@@ -103,7 +105,7 @@ timeBlock.append(timeField, eventBlock, saveEvent);
 //WHEN I click the save button for that time block
 //THEN the text for that event is saved in local storage
 
-//to save to local storage - stringify
+//to save to local storage - JSON.stringify
 
 function saveEvent() {
     localStorage.setItem("workHours", JSON.stringify(workHours));
@@ -114,7 +116,8 @@ function saveEvent() {
 //THEN the saved events persist
 
 //created postEvent() function to keep the data on the page
-
+//after it's stored in local storage, this function should set it to eventBlock.
+//create event array with empty values (" ") for event data/tex
 //WORK ON THIS...
 function postEvent() {
     workHours.forEach(function (_thisHour) {
@@ -123,8 +126,6 @@ function postEvent() {
 }  
 
 //Must store data somewhere??
-
-
 //function to set any existing data in localStorage to event block
 function init() {
     var dataStorage = JSON.parse(localStorage.getItem("workHours"));
@@ -143,6 +144,9 @@ function init() {
 }
 // run init() function 
 init();
+
+
+//why isn't this working?????
 
 
 
