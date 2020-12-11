@@ -8,16 +8,13 @@
 //create function to display the current date (moment.js??)
 
 function displayCurrentDate() {
-var currentDate = moment().format("dddd, MMMM Do YYYY, h:mm:ss a");
+var currentDate = moment().format("dddd, MMMM Do YYYY");
 $("#currentDay").text(currentDate);
 console.log(currentDate);
 
 }
 
 displayCurrentDate()
-
-
-
 
 
 //WHEN I scroll down
@@ -46,38 +43,67 @@ displayCurrentDate()
 //Demo shows work hrs 9am-5pm.  all must be in same array - military time?? MUST CHANGE ARRAY
 //
 
-var workHours = [ {hour: "09", time:"9",  amPM: "AM"},
+var workHours = [ {hour: "09", time:"9",   amPM: "AM"},
                   {hour: "10", time: "10", amPM: "AM"}, 
                   {hour: "11", time: "11", amPM: "AM"}, 
                   {hour: "12", time: "12", amPM: "PM"}, 
-                  {hour: "13", time: "1", amPM: "PM"}, 
-                  {hour: "14", time: "2", amPM: "PM"},
-                  {hour: "15", time: "3", amPM: "PM"}, 
-                  {hour: "16", time: "4", amPM: "PM"}, 
-                  {hour: "17", time: "5", amPM: "PM"}]
+                  {hour: "13", time: "1",  amPM: "PM"}, 
+                  {hour: "14", time: "2",  amPM: "PM"},
+                  {hour: "15", time: "3",  amPM: "PM"}, 
+                  {hour: "16", time: "4",  amPM: "PM"}, 
+                  {hour: "17", time: "5",  amPM: "PM"}]
 
 //moved time blocks down here below array. creating grid Here:
 
-//appending grid rows using for each loop
+//appending grid rows using 'for each' loop
 
  
-workHours.forEach(function(thisHour) {
+workHours.forEach(function(hour) {
 
     
-    var timeBlock = $("<form>").attr({
-        "class": "row"
-    });
-    $(".container").append(timeBlock);
+var timeBlock = $("<form>").attr({"class": "row"});
 
-    // create text field for time block
+$(".container").append(timeBlock);
 
-    var hourField = $("<div>")
-        .text(thisHour.time + thisHour.amPM)
-        .attr({
-            "class": "col-md-2 hour"
-    });
 
+// create text field for time block
+
+var timeField = $("<div>")
+
+.text(hour.time + hour.amPM)
+.attr({"class": "col-md-2 hour"});
+
+// create event block
+// add if/else to mark past,present,future
     
+var eventBlock = $("<div>").attr({"class": "col-md-9"});
+var eventData = $("<textarea>");
+eventBlock.append(eventData);
+
+
+if (hour.time < moment().format("h")) {
+    eventData.attr({"class": "past"})
+
+} else if (hour.time === moment().format("h")) {
+    eventData.attr({"class": "present"})
+
+} else if (hour.time > moment().format("h")) {
+    eventData.attr({"class": "future"})
+
+}
+
+  //create save button with font awesome
+
+  var saveBtn =   $("<i class='fas fa-save'></i>") 
+  var saveEvent = $("<button>").attr({"class": "col-md-1 save"});
+
+  saveEvent.append(saveBtn);
+  timeBlock.append(timeField, eventBlock, saveEvent);
+
+  })
+
+
+   
 
 //this function isnt working - Console logging 1300, not 1PM. need new strategy!!! UGH!!
 
@@ -95,13 +121,10 @@ workHours.forEach(function(thisHour) {
 
 //WHEN I view the time blocks for that day
 //THEN each time block is color-coded to indicate whether it is in the past, present, or future
-//var past = ;
-//var present = ;
-//var future =  ;
 
 //if (timeBlock < currentDate) {"past"}
 //else if (timeBlock === currentDate) {"present"}
-//else {future}
+//else {"future"}
 
 //WHEN I click into a time block
 //THEN I can enter an event
@@ -113,7 +136,7 @@ workHours.forEach(function(thisHour) {
 
 //create saveBtn with font awesome
 
-//var saveBtn = $("<i class="fas fa-save"></i>")
+
 
 //function saveEvent()
 
