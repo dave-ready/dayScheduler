@@ -26,15 +26,15 @@ displayCurrentDate()
 //Demo shows work hrs 9am-5pm.  all must be in same array - military time?? MUST CHANGE ARRAY
 //
 
-var workHours = [ {hour: "09", time:"9",   amPM: "AM"},
-                  {hour: "10", time: "10", amPM: "AM"}, 
-                  {hour: "11", time: "11", amPM: "AM"}, 
-                  {hour: "12", time: "12", amPM: "PM"}, 
-                  {hour: "13", time: "1",  amPM: "PM"}, 
-                  {hour: "14", time: "2",  amPM: "PM"},
-                  {hour: "15", time: "3",  amPM: "PM"}, 
-                  {hour: "16", time: "4",  amPM: "PM"}, 
-                  {hour: "17", time: "5",  amPM: "PM"}]
+var workHours = [ {index:"0", hour: "09", time:"9",   amPM: "AM"},
+                  {index:"1",hour: "10", time: "10", amPM: "AM"}, 
+                  {index:"2",hour: "11", time: "11", amPM: "AM"}, 
+                  {index: "3",hour: "12", time: "12", amPM: "PM"}, 
+                  {index: "4",hour: "13", time: "1",  amPM: "PM"}, 
+                  {index: "5",hour: "14", time: "2",  amPM: "PM"},
+                  {index: "6",hour: "15", time: "3",  amPM: "PM"}, 
+                  {index: "7",hour: "16", time: "4",  amPM: "PM"}, 
+                  {index: "8",hour: "17", time: "5",  amPM: "PM"}]
 
 //moved time blocks down here below array. creating grid Here:
 
@@ -53,6 +53,7 @@ var timeField = $("<div>")
 var eventBlock = $("<div>").attr({"class": "col-md-9"});
 var eventData = $("<textarea>");
 eventBlock.append(eventData);
+eventData.attr("id", hour.index);
 
 //WHEN I view the time blocks for that day
 //THEN each time block is color-coded to indicate whether it is in the past, present, or future
@@ -64,10 +65,13 @@ eventBlock.append(eventData);
 if (hour.time < moment().format("h")) {
     eventData.attr({"class": "past"})
 
-} else if (hour.time === moment().format("h")) {
+} 
+else if (hour.time === moment().format("h")) {
     eventData.attr({"class": "present"})
 
-} else if (hour.time > moment().format("h")) {
+} 
+
+else {
     eventData.attr({"class": "future"})
 
 }
@@ -87,7 +91,16 @@ timeBlock.append(timeField, eventBlock, saveEvent);
 //WHEN I click the save button for that time block
 //THEN the text for that event is saved in local storage
 
-function saveEvent() { }   //to save to local storage - stringify
+//to save to local storage - stringify
+
+function saveEvent() {
+    localStorage.setItem("workHours", JSON.stringify(workHours))
+ } 
+ //run saveEvent() function
+ saveEvent()
+
+ console.log(JSON.stringify(workHours));
+
 
 //WHEN I refresh the page
 //THEN the saved events persist
