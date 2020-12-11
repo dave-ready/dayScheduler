@@ -25,16 +25,22 @@ displayCurrentDate()
 
 //Demo shows work hrs 9am-5pm.  all must be in same array - military time?? MUST CHANGE ARRAY
 //
+var currentHour = moment().format("ddd, HH");
+var workHours = [ {calRow: "1", hour: "09", time:"9",  amPM: "AM", event:" "},
+                  {calRow: "2", hour: "10", time: "10", amPM: "AM", event:" "}, 
+                  {calRow: "3", hour: "11", time: "11", amPM: "AM", event:" "}, 
+                  {calRow: "4", hour: "12", time: "12", amPM: "PM", event:" "}, 
+                  {calRow: "5", hour: "13", time: "1",  amPM: "PM", event:" "}, 
+                  {calRow: "6", hour: "14", time: "2",  amPM: "PM", event:" "},
+                  {calRow: "7", hour: "15", time: "3",  amPM: "PM", event:" "}, 
+                  {calRow: "8", hour: "16", time: "4",  amPM: "PM", event:" "}, 
+                  {calRow: "9", hour: "17", time: "5",  amPM: "PM", event:" "}]
 
-var workHours = [ {calRow: "1", hour: "09",  time:"9",  amPM: "AM"},
-                  {calRow: "2", hour: "10", time: "10", amPM: "AM"}, 
-                  {calRow: "3", hour: "11", time: "11", amPM: "AM"}, 
-                  {calRow: "4", hour: "12", time: "12", amPM: "PM"}, 
-                  {calRow: "5", hour: "13", time: "1",  amPM: "PM"}, 
-                  {calRow: "6", hour: "14", time: "2",  amPM: "PM"},
-                  {calRow: "7", hour: "15", time: "3",  amPM: "PM"}, 
-                  {calRow: "8", hour: "16", time: "4",  amPM: "PM"}, 
-                  {calRow: "9", hour: "17", time: "5",  amPM: "PM"}]
+for (var i = 0; workHours.length < i; i++) {
+    console.log(workHours[i]);
+}
+ console.log(currentHour);  
+               
 
 //moved time blocks down here below array. creating grid Here:
 
@@ -100,12 +106,8 @@ timeBlock.append(timeField, eventBlock, saveEvent);
 //to save to local storage - stringify
 
 function saveEvent() {
-    localStorage.setItem("workHours", JSON.stringify(workHours))
+    localStorage.setItem("workHours", JSON.stringify(workHours));
  } 
- //run saveEvent() function
- saveEvent()
-
- console.log(JSON.stringify(workHours));
 
 
 //WHEN I refresh the page
@@ -116,13 +118,31 @@ function saveEvent() {
 //WORK ON THIS...
 function postEvent() {
     workHours.forEach(function (_thisHour) {
-        $("#_thisHour.id").val(_thisHour.reminder);
+        $("#_thisHour.id").val(_thisHour.event);
     })
 }  
 
 //Must store data somewhere??
-//temp value of 0;
-var dataStorage = 0;
+
+
+//function to set any existing data in localStorage to event block
+function init() {
+    var dataStorage = JSON.parse(localStorage.getItem("workHours"));
+
+    if (dataStorage) {
+        workHours = dataStorage;
+    }
+
+//run saveEvent() function
+ saveEvent()
+
+ //run postEvent() function
+ postEvent()
+
+ 
+}
+// run init() function 
+init();
 
 
 
