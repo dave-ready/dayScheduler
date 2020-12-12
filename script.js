@@ -25,7 +25,7 @@ displayCurrentDate()
 
 //Demo shows work hrs 9am-5pm.  all must be in same array - military time?? MUST CHANGE ARRAY
 //
-var currentHour = moment().format("ddd, HH");
+var thisHour = moment().format("ddd, HH");
 var workHours = [ {calRow: "1", hour: "09", time:"9",   amPM: "AM", event:" "},
                   {calRow: "2", hour: "10", time: "10", amPM: "AM", event:" "}, 
                   {calRow: "3", hour: "11", time: "11", amPM: "AM", event:" "}, 
@@ -41,7 +41,7 @@ for (var i = 0; workHours.length < i; i++) {
     console.log(workHours[4]);
     console.log(workHours[5]);
 }
- console.log(currentHour);  
+ console.log(thisHour);  
                
 
 //moved time blocks down here below array. creating grid Here:
