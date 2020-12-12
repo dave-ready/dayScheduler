@@ -9,5 +9,5 @@ Each text field is color-coded to reflect whether the time is in the past, the p
 <img width="1440" alt="hwss5 1" src="https://user-images.githubusercontent.com/73320561/101994533-ff3bd300-3c90-11eb-9901-23e437f163a0.png">
 <img width="1440" alt="hwss5 2" src="https://user-images.githubusercontent.com/73320561/101994536-0236c380-3c91-11eb-9bb1-f085745ff231.png">
 
-you can view the app here:
+you can view the app here:https://dave-ready.github.io/dayScheduler/
 
